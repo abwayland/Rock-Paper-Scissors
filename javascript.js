@@ -21,20 +21,20 @@ function playRound(playerSelection, computerSelection) {
         }
         //if computer equals paper
         if (computerSelection == "paper") {
-            return("Player picked rock. Computer picked paper. Computer wins.");
             computerScore++;
+            return("Player picked rock. Computer picked paper. Computer wins.");
         }
         //if computer equals scissors
         if (computerSelection == "scissors") {
-            return("Player picked rock. Computer picked scissors. Player wins.");
             playerScore++;
+            return("Player picked rock. Computer picked scissors. Player wins.");
         }
     //if player equals paper
     } else if (playerSelection == "paper") {
         //if computer equals rock
         if (computerSelection == "rock") {
-            return("Player picked paper. Computer picked rock. Player wins.");
             playerScore++;
+            return("Player picked paper. Computer picked rock. Player wins.");
         }
         //if computer equals paper
         if (computerSelection == "paper") {
@@ -42,20 +42,20 @@ function playRound(playerSelection, computerSelection) {
         }
         //if computer equals scissors
         if (computerSelection == "scissors") {
-            return("Player picked paper. Computer picked scissors. Computer wins.");
             computerScore++;
+            return("Player picked paper. Computer picked scissors. Computer wins.");
         }
     //if player equals scissors
     } else if (playerSelection == "scissors") {
         //if computer equals rock
         if (computerSelection == "rock") {
-            return("Player picked scissors. Computer picked rock. Computer wins.");
             computerScore++;
+            return("Player picked scissors. Computer picked rock. Computer wins.");
         }
         //if computer equals paper
         if (computerSelection == "paper") {
-            return("Player picked scissors. Computer picked paper. Player wins.");
             playerScore++;
+            return("Player picked scissors. Computer picked paper. Player wins.");
         }
         //if computer equals scissors
         if (computerSelection == "scissors") {
@@ -78,6 +78,16 @@ function game() {
         const playerInput = promptPlayer();
         const result = playRound(playerInput, computerPlay());
         console.log(result);
+        console.log(`Player: ${playerScore}: Computer: ${computerScore}`);
+    }
+    console.log(`Player wins ${playerScore} rounds. Computer wins ${computerScore} rounds.`);
+    if (computerScore > playerScore) {
+        console.log("Computer wins!");
+    } else if (playerScore > computerScore) {
+        console.log("Player wins!");
+    } else
+    {
+        console.log("Game ends in a draw.");
     }
 }
 
