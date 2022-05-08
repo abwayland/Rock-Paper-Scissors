@@ -1,3 +1,6 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function computerPlay() {
     //create an array of strings [rock, paper, scissors]
     const strArr = ["rock", "paper", "scissors"];
@@ -14,47 +17,68 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == "rock") {
         //if computer equals rock
         if (computerSelection == "rock") {
-            console.log("Player picked rock. Computer picked rock. Game ends in a draw.");
+            return("Player picked rock. Computer picked rock. Game ends in a draw.");
         }
         //if computer equals paper
         if (computerSelection == "paper") {
-            console.log("Player picked rock. Computer picked paper. Computer wins.");
+            return("Player picked rock. Computer picked paper. Computer wins.");
+            computerScore++;
         }
         //if computer equals scissors
         if (computerSelection == "scissors") {
-            console.log("Player picked rock. Computer picked scissors. Player wins.");
+            return("Player picked rock. Computer picked scissors. Player wins.");
+            playerScore++;
         }
     //if player equals paper
     } else if (playerSelection == "paper") {
         //if computer equals rock
         if (computerSelection == "rock") {
-            console.log("Player picked paper. Computer picked rock. Player wins.");
+            return("Player picked paper. Computer picked rock. Player wins.");
+            playerScore++;
         }
         //if computer equals paper
         if (computerSelection == "paper") {
-            console.log("Player picked paper. Computer picked paper. Game ends in a draw.");
+            return("Player picked paper. Computer picked paper. Game ends in a draw.");
         }
         //if computer equals scissors
         if (computerSelection == "scissors") {
-            console.log("Player picked paper. Computer picked scissors. Computer wins.");
+            return("Player picked paper. Computer picked scissors. Computer wins.");
+            computerScore++;
         }
     //if player equals scissors
     } else if (playerSelection == "scissors") {
         //if computer equals rock
         if (computerSelection == "rock") {
-            console.log("Player picked scissors. Computer picked rock. Computer wins.");
+            return("Player picked scissors. Computer picked rock. Computer wins.");
+            computerScore++;
         }
         //if computer equals paper
         if (computerSelection == "paper") {
-            console.log("Player picked scissors. Computer picked paper. Player wins.");
+            return("Player picked scissors. Computer picked paper. Player wins.");
+            playerScore++;
         }
         //if computer equals scissors
         if (computerSelection == "scissors") {
-            console.log("Player picked scissors. Computer picked scissors. Game ends in a draw.");
+            return("Player picked scissors. Computer picked scissors. Game ends in a draw.");
         }
     } else {
-        console.log("Error in playRound()");
+        return("Player did not make valid choice.");
     }
 }
 
-playRound("rock", computerPlay());
+function promptPlayer() {
+    //prompt player for input and store in variable
+    const input = prompt("Do you pick rock, paper, or scissors?");
+    //return variable
+    return input;
+}
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        const playerInput = promptPlayer();
+        const result = playRound(playerInput, computerPlay());
+        console.log(result);
+    }
+}
+
+game();
