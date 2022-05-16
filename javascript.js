@@ -1,5 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
+let rounds = 0;
 
 function computerPlay() {
     //create an array of strings [rock, paper, scissors]
@@ -10,7 +11,7 @@ function computerPlay() {
     return strArr[index];
 }
 
-function playRound(playerSelection, computerSelection) {
+function getRPSResult(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
     //if player equals rock
@@ -66,29 +67,33 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function promptPlayer() {
-    //prompt player for input and store in variable
-    const input = prompt("Do you pick rock, paper, or scissors?");
-    //return variable
-    return input;
-}
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-        const playerInput = promptPlayer();
-        const result = playRound(playerInput, computerPlay());
-        console.log(result);
-        console.log(`Player: ${playerScore}: Computer: ${computerScore}`);
-    }
-    console.log(`Player wins ${playerScore} rounds. Computer wins ${computerScore} rounds.`);
-    if (computerScore > playerScore) {
-        console.log("Computer wins!");
-    } else if (playerScore > computerScore) {
-        console.log("Player wins!");
-    } else
-    {
-        console.log("Game ends in a draw.");
+function playRound(playerInput) {
+    const result = getRPSResult(playerInput, computerPlay());
+    rounds++;
+    showOutput(result);
+    showOutput(`Player: ${playerScore}: Computer: ${computerScore}`);
+    if (rounds >= 5) {
+        showOutput(`Player wins ${playerScore} rounds. Computer wins ${computerScore} rounds.`);
+        if (computerScore > playerScore) {
+            showOutput("Computer wins!");
+        } else if (playerScore > computerScore) {
+            showOutput("Player wins!");
+        } else
+        {
+            showOutput("Game ends in a draw.");
+        }
     }
 }
 
-game();
+function showOutput(string) {
+    const output = document.querySelector('.output')
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.textContent = string;
+    output.appendChild(content);
+}
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', function(e) {
+  playRound(button.textContent);
+}));
