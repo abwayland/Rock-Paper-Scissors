@@ -18,49 +18,49 @@ function getRPSResult(playerSelection, computerSelection) {
     if (playerSelection == "rock") {
         //if computer equals rock
         if (computerSelection == "rock") {
-            return("Player picked rock. Computer picked rock. Game ends in a draw.");
+            return("Player picked rock. Computer picked rock. Round ends in a draw.");
         }
         //if computer equals paper
         if (computerSelection == "paper") {
             computerScore++;
-            return("Player picked rock. Computer picked paper. Computer wins.");
+            return("Player picked rock. Computer picked paper. Computer wins round.");
         }
         //if computer equals scissors
         if (computerSelection == "scissors") {
             playerScore++;
-            return("Player picked rock. Computer picked scissors. Player wins.");
+            return("Player picked rock. Computer picked scissors. Player wins round.");
         }
     //if player equals paper
     } else if (playerSelection == "paper") {
         //if computer equals rock
         if (computerSelection == "rock") {
             playerScore++;
-            return("Player picked paper. Computer picked rock. Player wins.");
+            return("Player picked paper. Computer picked rock. Player wins round.");
         }
         //if computer equals paper
         if (computerSelection == "paper") {
-            return("Player picked paper. Computer picked paper. Game ends in a draw.");
+            return("Player picked paper. Computer picked paper. Round ends in a draw.");
         }
         //if computer equals scissors
         if (computerSelection == "scissors") {
             computerScore++;
-            return("Player picked paper. Computer picked scissors. Computer wins.");
+            return("Player picked paper. Computer picked scissors. Computer wins round.");
         }
     //if player equals scissors
     } else if (playerSelection == "scissors") {
         //if computer equals rock
         if (computerSelection == "rock") {
             computerScore++;
-            return("Player picked scissors. Computer picked rock. Computer wins.");
+            return("Player picked scissors. Computer picked rock. Computer wins round.");
         }
         //if computer equals paper
         if (computerSelection == "paper") {
             playerScore++;
-            return("Player picked scissors. Computer picked paper. Player wins.");
+            return("Player picked scissors. Computer picked paper. Player wins round.");
         }
         //if computer equals scissors
         if (computerSelection == "scissors") {
-            return("Player picked scissors. Computer picked scissors. Game ends in a draw.");
+            return("Player picked scissors. Computer picked scissors. Round ends in a draw.");
         }
     } else {
         return("Player did not make valid choice.");
@@ -70,8 +70,9 @@ function getRPSResult(playerSelection, computerSelection) {
 function playRound(playerInput) {
     const result = getRPSResult(playerInput, computerPlay());
     rounds++;
+    clearOutput();
     showOutput(result);
-    showOutput(`Player: ${playerScore}: Computer: ${computerScore}`);
+    showOutput(`Player: ${playerScore} | Computer: ${computerScore}`);
     if (rounds >= 5) {
         showOutput(`Player wins ${playerScore} rounds. Computer wins ${computerScore} rounds.`);
         if (computerScore > playerScore) {
@@ -82,6 +83,13 @@ function playRound(playerInput) {
         {
             showOutput("Game ends in a draw.");
         }
+    }
+}
+
+function clearOutput() {
+    const output = document.querySelector('.output');
+    while(output.firstChild) {
+        output.removeChild(output.firstChild);
     }
 }
 
